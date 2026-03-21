@@ -1,0 +1,6 @@
+{
+  "sequence_length": 30,
+  "prediction_horizon": 7,
+  "total_sequences": 593,
+  "feature_dim": 9
+}
