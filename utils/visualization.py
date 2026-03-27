@@ -158,21 +158,10 @@ def plot_lake_status_table(flood_status_dict, lake_metrics):
     for lake_name in config.LAKES:
         status = flood_status_dict.get(lake_name, {})
         
-        # Get metrics - handle both old and new column names
-        lake_metric = lake_metrics[lake_metrics['Lake'].str.lower() == lake_name.lower()]
-        if len(lake_metric) > 0:
-            # Use 'r2' column from actual CSV (lowercase)
-            r2_score = lake_metric['r2'].values[0]
-        else:
-            r2_score = 'N/A'
-        
         data.append({
             'Lake': lake_name,
             'Status': status.get('status_text', '🟢 SAFE'),
-            'Current Level': f"{status.get('current_percent', 0):.1f}%",
-            'Threshold': f"{status.get('threshold_percent', 90):.1f}%",
-            'Days to Flood': status.get('days_to_flood', '-') if status.get('days_to_flood') else '-',
-            'Model R²': f"{r2_score:.3f}" if isinstance(r2_score, (int, float)) else r2_score
+            'Days to Flood': status.get('days_to_flood', '-') if status.get('days_to_flood') else '-'
         })
     
     df = pd.DataFrame(data)
