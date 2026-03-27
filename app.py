@@ -143,11 +143,12 @@ selected_lakes = st.sidebar.multiselect(
 
 # Flood threshold textbox
 st.sidebar.markdown("### ⚠️ Flood Threshold")
-flood_threshold_level = st.sidebar.number_input(
-    "Set flood threshold (water level units):",
+flood_threshold_level = st.sidebar.slider(
+    "Set flood threshold :",
     min_value=0.0,
-    value=90.0,
-    step=0.5,
+    max_value=2.0,
+    value=2.0,
+    step=0.1,
     format="%.1f",
     help="Alert when water level exceeds this threshold"
 )
